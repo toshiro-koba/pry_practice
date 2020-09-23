@@ -1,1 +1,14 @@
 <%= "トップページ" %>
+<% if user_signed_in? %>
+  <li class="user-management-list" ><%= current_user.nickname %></li>
+  <li class="user-management-list" >
+    <%= link_to 'マイページ', edit_user_path(current_user) %>
+    </a>
+  
+  <li class="user-management-list" ><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  
+  
+<% else %>
+  <li class="user-management-list" ><%= link_to 'ログイン', new_user_session_path %></li>
+  <li class="user-management-list" ><%= link_to '新規登録', new_user_registration_path %></li>
+<% end %>
